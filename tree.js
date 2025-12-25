@@ -47,6 +47,20 @@ export default class Tree {
         }
 
     }
+
+    find(value) {
+        let current = this.root;
+        while(current !== null) {
+            if (value > current.data) {
+                current = current.right;
+            } else if (value < current.data) {
+                current = current.left;
+            } else {
+                return current;
+            }
+        }
+        
+    }
 }
 
 export const prettyPrint = (node, prefix = '', isLeft = true) => {

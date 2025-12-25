@@ -9,4 +9,5 @@ const myTree = new Tree(numbers);
 prettyPrint(myTree.root);
 
 myTree.insert(15);
-prettyPrint(myTree.root);
+
+prettyPrint(myTree.find(4));
