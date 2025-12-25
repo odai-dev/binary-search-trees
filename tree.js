@@ -61,6 +61,10 @@ export default class Tree {
         }
         
     }
+
+    deleteItem(value) {
+        this.root = deleteRecursive(this.root, value);
+    }
 }
 
 export const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -73,5 +77,25 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
     if (node.left !== null) {
         prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+};
+
+const deleteRecursive = (root, value) => {
+    if (root === null) return null;
+    if (value < root.data) {
+        root.left = deleteRecursive(root.left, value);
+    } else if (value > root.data) {
+        root.right = deleteRecursive(root.right, value);
+    } else {
+        if (root.left === null) return root.right;
+        if (root.right === null) return root.left;
+        
+        let successor = root.right;
+        while(successor.left !== null) {
+            successor = successor.left;
+        }
+        root.data = successor.data;
+        root.right = deleteRecursive(root.right, successor.data);
+        return root;
     }
 };
