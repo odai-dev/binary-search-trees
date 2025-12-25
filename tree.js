@@ -1,6 +1,4 @@
-import Node
-
-    from "./node";
+import Node from "./node.js";
 export default class Tree {
     constructor(arr = []) {
         arr.sort((a, b) => a - b);
@@ -51,7 +49,7 @@ export default class Tree {
     }
 }
 
-const prettyPrint = (node, prefix = '', isLeft = true) => {
+export const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {
         return;
     }
