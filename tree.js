@@ -39,7 +39,7 @@ export default class Tree {
                     current.left = node;
                     return;
                 } else {
-                    current= current.left;
+                    current = current.left;
                 }
             } else {
                 return;
@@ -50,7 +50,7 @@ export default class Tree {
 
     find(value) {
         let current = this.root;
-        while(current !== null) {
+        while (current !== null) {
             if (value > current.data) {
                 current = current.right;
             } else if (value < current.data) {
@@ -59,7 +59,7 @@ export default class Tree {
                 return current;
             }
         }
-        
+
     }
 
     deleteItem(value) {
@@ -76,7 +76,7 @@ export default class Tree {
         const queue = [];
         queue.push(this.root);
 
-        while(queue.length > 0) {
+        while (queue.length > 0) {
             const current = queue.shift();
             callback(current);
 
@@ -89,6 +89,46 @@ export default class Tree {
             }
         }
     }
+
+    depth(value) {
+        let current = this.root;
+        let depth = 0;
+
+        while (current !== null) {
+            if (value === current.data) {
+                return depth;
+            }
+
+            if (value < current.data) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+
+            depth++;
+        }
+
+        return null;
+    }
+
+    heightNode(node) {
+        if (node === null) return -1;
+
+        return 1 + Math.max(
+            this.heightNode(node.left),
+            this.heightNode(node.right)
+        );
+    }
+
+    height(value) {
+        const node = this.find(value);
+        if (node === null) return null;
+
+        return this.heightNode(node);
+    }
+
+
+
 
 }
 
@@ -127,9 +167,9 @@ const deleteRecursive = (root, value) => {
     } else {
         if (root.left === null) return root.right;
         if (root.right === null) return root.left;
-        
+
         let successor = root.right;
-        while(successor.left !== null) {
+        while (successor.left !== null) {
             successor = successor.left;
         }
         root.data = successor.data;
