@@ -65,7 +65,45 @@ export default class Tree {
     deleteItem(value) {
         this.root = deleteRecursive(this.root, value);
     }
+
+
+    levelOrderForEach(callback) {
+        if (this.root === null) return;
+        if (!callback) {
+            throw new Error('A callback is required');
+        };
+
+        const queue = [];
+        queue.push(this.root);
+
+        while(queue.length > 0) {
+            const current = queue.shift();
+            callback(current);
+
+            if (current.left !== null) {
+                queue.push(current.left);
+            }
+
+            if (current.right !== null) {
+                queue.push(current.right);
+            }
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const prettyPrint = (node, prefix = '', isLeft = true) => {
     if (node === null) {

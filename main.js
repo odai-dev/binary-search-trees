@@ -11,3 +11,7 @@ prettyPrint(myTree.root);
 myTree.insert(15);
 
 prettyPrint(myTree.find(4));
+
+myTree.levelOrderForEach(node => {
+    console.log(node.data);
+});
