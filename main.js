@@ -21,3 +21,18 @@ console.log("Depth of 1:", myTree.depth(1));
 
 console.log("Height of 9:", myTree.height(9));
 console.log("Height of 15:", myTree.height(4));
+
+
+console.log("Is balanced?", myTree.isBalanced());
+
+myTree.insert(50);
+myTree.insert(60);
+myTree.insert(70);
+
+console.log("Is balanced after skewing?", myTree.isBalanced());
+
+console.log("\nRebalancing...");
+myTree.rebalance();
+prettyPrint(myTree.root);
+
+console.log("Is balanced after rebalance?", myTree.isBalanced());
