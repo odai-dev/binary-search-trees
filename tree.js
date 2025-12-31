@@ -59,6 +59,7 @@ export default class Tree {
                 return current;
             }
         }
+        return null;
 
     }
 
@@ -89,6 +90,34 @@ export default class Tree {
             }
         }
     }
+
+    preOrderForEach(callback, node = this.root) {
+        if (!callback) throw new Error("A callback is required");
+        if (node === null) return;
+
+        callback(node);
+        this.preOrderForEach(callback, node.left);
+        this.preOrderForEach(callback, node.right);
+    }
+
+    inOrderForEach(callback, node = this.root) {
+        if (!callback) throw new Error("A callback is required");
+        if (node === null) return;
+
+        this.inOrderForEach(callback, node.left);
+        callback(node);
+        this.inOrderForEach(callback, node.right);
+    }
+
+    postOrderForEach(callback, node = this.root) {
+        if (!callback) throw new Error("A callback is required");
+        if (node === null) return;
+
+        this.postOrderForEach(callback, node.left);
+        this.postOrderForEach(callback, node.right);
+        callback(node);
+    }
+
 
     depth(value) {
         let current = this.root;
@@ -189,6 +218,7 @@ export const prettyPrint = (node, prefix = '', isLeft = true) => {
 
 const deleteRecursive = (root, value) => {
     if (root === null) return null;
+
     if (value < root.data) {
         root.left = deleteRecursive(root.left, value);
     } else if (value > root.data) {
@@ -203,6 +233,8 @@ const deleteRecursive = (root, value) => {
         }
         root.data = successor.data;
         root.right = deleteRecursive(root.right, successor.data);
-        return root;
     }
+
+    return root; 
 };
+

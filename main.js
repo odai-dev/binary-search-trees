@@ -12,9 +12,17 @@ myTree.insert(15);
 
 prettyPrint(myTree.find(4));
 
-myTree.levelOrderForEach(node => {
-    console.log(node.data);
-});
+console.log("Pre-order traversal:");
+myTree.preOrderForEach(node => console.log(node.data));
+
+console.log("In-order traversal:");
+myTree.inOrderForEach(node => console.log(node.data));
+
+console.log("Post-order traversal:");
+myTree.postOrderForEach(node => console.log(node.data));
+
+console.log("Level-order traversal:");
+myTree.levelOrderForEach(node => console.log(node.data));
 
 console.log("Depth of 10:", myTree.depth(17));
 console.log("Depth of 1:", myTree.depth(1));
