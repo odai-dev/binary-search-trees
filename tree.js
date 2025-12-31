@@ -69,10 +69,10 @@ export default class Tree {
 
 
     levelOrderForEach(callback) {
-        if (this.root === null) return;
         if (!callback) {
             throw new Error('A callback is required');
         };
+        if (this.root === null) return;
 
         const queue = [];
         queue.push(this.root);

@@ -2,9 +2,9 @@ import Tree from "./tree.js";
 import { prettyPrint } from "./tree.js";
 
 
-let numbers = [1,9,4,7,2,19,12,11,17,10,17];
+const randomNumbers = Array.from({ length: 15 }, () => Math.floor(Math.random() * 100));
 
-const myTree = new Tree(numbers);
+const myTree = new Tree(randomNumbers);
 
 prettyPrint(myTree.root);
 
